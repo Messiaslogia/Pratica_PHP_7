@@ -9,12 +9,16 @@ class Sql extends PDO {
         $this->conn = new  PDO("mysql:host=localhost;dbname=messias_teste", "root", "");
     }
 
-    private function setParams($statment, $parameters = array()){
+    private function setParams($statement, $parameters = array()){
         foreach($parameters as $key => $value){
 
-            $statment->bindParam($key, $value);
+            $this->setParam($statement, $key, $value);
         }
 
+    }
+
+    private function setParam($statement, $key, $value){
+        $statement->bindParam($key, $value);
     }
 
     public function comands($rawQuery, $params = array()){
